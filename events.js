@@ -98,7 +98,23 @@ function ItemHandler(target) {
 
 // Triggered when a build target's recipe selector is changed.
 function RecipeSelectorHandler(target, i) {
+    let item = solver.items[target.itemName]
+    let disableRecipes = []
+    let enableRecipes = []
+
+    //Disable everything but the one we chose
+    for (let ri = 0; ri < item.recipes.length; ri++) {
+        if (ri != i)
+            disableRecipes[item.recipes[ri].name] = true
+        else
+            enableRecipes[item.recipes[ri].name] = true
+    }
+
+    solver.addDisabledRecipes(disableRecipes)
+    solver.removeDisabledRecipes(enableRecipes)
     target.recipeIndex = i
+
+    solver.findSubgraphs(spec)
     itemUpdate()
 }
 
