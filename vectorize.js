@@ -33,6 +33,8 @@ function MatrixSolver(spec, recipes) {
         }
     }
     var items = []
+	let itemHash = []
+	
     this.items = items
     // Map of items produced by this matrix.
     this.outputs = {}
@@ -44,6 +46,7 @@ function MatrixSolver(spec, recipes) {
         var item = products[itemName]
         this.outputs[item.name] = item
         items.push(item)
+		itemHash[itemName] = 1
         wasteItems[item.name] = this.outputItems.length
         this.outputItems.push(item)
     }
@@ -55,8 +58,13 @@ function MatrixSolver(spec, recipes) {
         }
         var item = ingredients[itemName]
         items.push(item)
-        var recipe = item.recipes[0]
+		itemHash[itemName] = 1
+		
+		for (let ri in item.recipes)
+		{
+			let recipe = item.recipes[ri]
         this.inputRecipes.push(recipe)
+    }
     }
     var allRecipes = recipeArray.concat(this.inputRecipes)
     var itemIndexes = {}
