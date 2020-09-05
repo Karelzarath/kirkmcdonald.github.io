@@ -24,9 +24,10 @@ function Modification(name, filename, legacy, sheetSize) {
 var MODIFICATIONS = {
     "1-0-0": new Modification("Vanilla 1.0.0", "vanilla-1.0.0.json", false, [480, 512]),
     "1-0-0x": new Modification("Vanilla 1.0.0 - Expensive", "vanilla-1.0.0-expensive.json", false, [480, 512]),
+    "k21-0-4": new Modification("Krastorio 2 1.0.4", "krastorio2-1.0.4.json", false, [672, 736]),
 }
 
-var DEFAULT_MODIFICATION = "1-0-0"
+var DEFAULT_MODIFICATION = "k21-0-4"
 
 function addOverrideOptions(version) {
     var tag = "local-" + version.replace(/\./g, "-")
